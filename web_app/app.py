@@ -13,7 +13,9 @@ tokenizer = get_tokenizer('basic_english')
 app = Flask(__name__)
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 
-# SIMPLE BOW CLASSIFIERF
+############################# MODEL CLASSES ##########################################
+
+# SIMPLE BOW CLASSIFIER
 
 class BoWClassifier(nn.Module):
 # I referred to this tutorial for help: https://pytorch.org/tutorials/beginner/nlp/deep_learning_tutorial.html#sphx-glr-beginner-nlp-deep-learning-tutorial-py
@@ -125,8 +127,11 @@ def predict_label_RNN(text, model, vocab):
   # process input
   stop_words = set(stopwords.words('english'))
   tokens = tokenizer(text)
+  #rint(tokens)
   tokens_without_stopwords = [token for token in tokens if token not in stop_words]
+  #print(tokens_without_stopwords)
   idxs = [vocab[token] for token in tokens_without_stopwords]
+  #print(idxs)
   idxs = torch.tensor(idxs)
   # add batch of 1 (dimension)
   idxs = idxs.unsqueeze(1)
@@ -139,7 +144,7 @@ def predict_label_RNN(text, model, vocab):
 
   return labels[predicted_label.item()], scores
 
-################# MODEL INITIALIZATION ##################
+############################### MODEL INITIALIZATION #######################################
 
 BOW_vocab = torch.load('final_models/BOW_vocab.pth')
 
@@ -174,7 +179,7 @@ GRU_model = GRU(INPUT_DIM, EMBEDDING_DIM, HIDDEN_DIM, OUTPUT_DIM, DROPOUT)
 
 GRU_model.load_state_dict(torch.load('final_models/GRU-model.pt', map_location=torch.device('cpu')))
 
-################# FLASK ROUTES ##########################
+################################# FLASK ROUTES ###########################################
 
 @app.route('/', methods = ['GET', 'POST'])
 def index():
