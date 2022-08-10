@@ -13,4 +13,7 @@ Sentiment analysis is a very common NLP task. There are many papers exploring di
 For a full description of the project and results, please review the presentation FinalPresentation.pptx and final report NLP_Final_Project.pdf
 
 ## Folder Descriptions
-- final\_notebooks: this folder contains the final jupyter notebooks used for the final results  
+- final\_notebooks: This folder contains the final jupyter notebooks used for the final results for the BOW, LSTM, and GRU models. There are also jupyter notebooks for models that I was not able to train like a simple RNN and a BOW for just the last sentence of the review. The Transformers jupyter notebook is in this folder as well.
+- final\_plots: This folder contains a copy of the plots that are shown in the final report. 
+- scratch\_work: This folder contains all my beginning jupyter notebooks that are not formatted very well.
+- web\_app: This folder contains the source code for the flask web app that I created that allows you to classify a review of your choice with the best models for the BOW, LSTM, and GRU classifiers. Instructions for how to run this app are in the readme file in this folder. 
